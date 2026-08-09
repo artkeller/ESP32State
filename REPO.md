@@ -1,4 +1,4 @@
-````
+```text
 ESP32State/
 ├── library.json             # PlatformIO Package Registry Manifest
 ├── library.properties       # Arduino IDE Package Manifest
@@ -46,4 +46,4 @@ ESP32State/
     │   ├── ESP32State_Conditions.h
     │   └── 10_ComprehensiveConditions.ino
     └── README.md
-````
+```
