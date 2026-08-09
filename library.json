@@ -1,0 +1,21 @@
+{
+  "name": "ESP32State",
+  "version": "2.0.0",
+  "description": "CRA-compliant, zero-overhead post-mortem state and reset reason analyzer for ESP32.",
+  "keywords": ["esp32", "reset-reason", "wakeup", "deep-sleep", "cra", "cyber-resilience"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artkeller/ESP32State.git"
+  },
+  "authors": [
+    {
+      "name": "Thomas Walloschke",
+      "email": "artkeller@gmc.de",
+      "maintainer": true
+    }
+  ],
+  "license": "CC0-4.0",
+  "frameworks": ["arduino", "espidf"],
+  "platforms": ["espressif32"],
+  "headers": ["ESP32State.h", "ESP32StateConfig.h"]
+}
