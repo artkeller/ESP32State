@@ -1,5 +1,5 @@
 /**
- * @file Default.h
+ * @file ESP32State_Defaults.h
  * @brief Standard Reset- & Wakeup-Checks (SOC_* geguardet)
  */
 
