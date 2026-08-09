@@ -17,11 +17,10 @@ ESP32State/
 │   └── variants/            # Chip- / Framework-Spezifika (falls nötig)
 │       └── ESP32State_HAL.h # Abstraktion für seltene IDF/Arduino-Abweichungen
 │
-└── examples/                # Lauffähige Beispiele
-    ├── 01_BasicDefault/
-    │   └── 01_BasicDefault.ino
-    ├── 02_CustomRouting/
-    │   └── 02_CustomRouting.ino
-    └── 03_ProductionSilent/
-        └── 03_ProductionSilent.ino
+│
+└── examples/
+    ├── 01_BasicDefault/      # Standard Post-Mortem Analyse
+    ├── 02_CustomRouting/     # Umleitung auf SD/nullptr
+    ├── 03_ProductionSilent/  # -DESP32STATE_DISABLE_LOGGING Demo
+    └── 04_PowerDownDomains/  # Das refaktorierte Timing/Power-Domain Beispiel
 ````
