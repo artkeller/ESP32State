@@ -10,7 +10,7 @@
 
 #include <functional>
 #include <vector>
-#include "ESP32StateConfig.h"
+#include "ESP32StateConfig.h"        #  Configurable output stream routing and logging for ESP32State
 
 class ESP32State {
 public:
