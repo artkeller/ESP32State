@@ -1,6 +1,6 @@
 /**
- * @file ESP32State_Conditions.h
- * @brief Predefined conditions for ESP32 reset and wakeup reasons.
+ * @file Default.h
+ * @brief Standard Reset- & Wakeup-Checks (SOC_* geguardet)
  */
 
 #ifndef ESP32STATE_CONDITIONS_H
