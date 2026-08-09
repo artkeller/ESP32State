@@ -1,4 +1,4 @@
-    ````
+````
 ESP32State/
 ├── library.json             # PlatformIO Package Registry Manifest
 ├── library.properties       # Arduino IDE Package Manifest
