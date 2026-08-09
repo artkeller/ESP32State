@@ -85,7 +85,7 @@ void setup() {
     ESP32State::AnalysisResult result = analyzer.analyze();
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Analysis complete. Evaluated: %zu, Matched: %zu", 
-                  result.total_evaluated, result.matched);
+                  result.matched + result.unmatched, result.matched);
 
     // NVS-Verbindung sauber schließen
     preferences.end();
