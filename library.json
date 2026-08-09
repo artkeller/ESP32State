@@ -14,7 +14,7 @@
       "maintainer": true
     }
   ],
-  "license": "CC0-4.0",
+  "license": "CC-BY-4.0",
   "frameworks": ["arduino", "espidf"],
   "platforms": ["espressif32"],
   "headers": ["ESP32State.h", "ESP32StateConfig.h"]
