@@ -34,9 +34,8 @@ inline std::vector<ESP32State::ConditionPair> getRestartConditions() {
             []() { ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Power-on detected."); }
         },
         
-
-#if SOC_PM_SUPPORT_EXT0_WAKEUP
         // Condition 4: External Signal Wakeup (EXT0)
+#if SOC_PM_SUPPORT_EXT0_WAKEUP
         {
             []() { return esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0; },
             []() { ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Wakeup by external signal detected."); }
