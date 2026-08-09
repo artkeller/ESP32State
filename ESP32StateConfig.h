@@ -1,6 +1,6 @@
 /**
  * @file ESP32StateConfig.h
- * @brief Configuration and stream routing for ESP32State.
+ * @brief Configurable output stream routing and logging for ESP32State.
  */
 
 #ifndef ESP32STATE_CONFIG_H
@@ -8,28 +8,35 @@
 
 #include <Arduino.h>
 
+// Compile-Time Flag: Löscht bei -DESP32STATE_DISABLE_LOGGING sämtlichen Log-Code
+#if defined(ESP32STATE_DISABLE_LOGGING)
+    #define ESP32STATE_LOG(level, format, ...) ((void)0)
+#else
+    #define ESP32STATE_LOG(level, format, ...) ESP32State::log(level, format, ##__VA_ARGS__)
+#endif
+
 namespace ESP32State {
 
 enum class LogLevel {
-    NONE = 0,   ///< Stummschaltung (Keine Log-Ausgaben)
-    ERROR = 1,  ///< Nur kritische Fehler (z. B. Panic, Panic-Reset, Brownout)
-    INFO = 2,   ///< Standard-Informationen (Start-Ursache, Wakeup-Events)
-    VERBOSE = 3 ///< Ausführliche System-Diagnose
+    NONE = 0,   ///< Keinerlei Ausgaben
+    ERROR = 1,  ///< Nur Fehler (Panic, Brownout etc.)
+    INFO = 2,   ///< Normale Diagnosedaten
+    VERBOSE = 3 ///< Ausführliches Logging
 };
 
 struct Config {
-    Print* outputStream = &Serial;      ///< Zeiger auf Print-Stream (z. B. &Serial, &Serial1, oder nullptr)
-    LogLevel logLevel = LogLevel::INFO; ///< Standard-Loglevel
-    bool enablePrefix = true;           ///< Ob "[ESP32State]" vorangestellt werden soll
+    Print* outputStream = &Serial;      ///< Ziel-Stream (&Serial, &Serial1, &File oder nullptr)
+    LogLevel logLevel = LogLevel::INFO; ///< Standard Loglevel
+    bool enablePrefix = true;           ///< Prefix "[ESP32State]" aktivieren
 };
 
 // Globale Bibliotheks-Konfiguration
 extern Config globalConfig;
 
 /**
- * @brief Passt die Ausgabe-Konfiguration der Bibliothek an.
- * @param stream Zeiger auf ein Print-Objekt (z. B. &Serial, &File) oder nullptr für Stummschaltung.
- * @param level Das gewünschte Log-Level.
+ * @brief Konfiguriert das Output-Routing zur Laufzeit.
+ * @param stream Zeiger auf Print-Objekt oder nullptr für Stummschaltung.
+ * @param level Gewünschtes Log-Level.
  */
 inline void configure(Print* stream, LogLevel level = LogLevel::INFO) {
     globalConfig.outputStream = stream;
@@ -37,11 +44,11 @@ inline void configure(Print* stream, LogLevel level = LogLevel::INFO) {
 }
 
 /**
- * @brief Interne Print-Hilfsfunktion (beachtet Stream NULL-Check und LogLevel)
+ * @brief Interne Print-Hilfsfunktion mit nullptr-Check und Level-Filtering.
  */
 inline void log(LogLevel level, const char* format, ...) {
     if (globalConfig.outputStream == nullptr || level > globalConfig.logLevel) {
-        return; // Stummschaltung oder Loglevel zu niedrig
+        return; // nullptr oder Level unterschritten -> Abbruch vor Formatting
     }
 
     if (globalConfig.enablePrefix) {
