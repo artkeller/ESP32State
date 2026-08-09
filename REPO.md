@@ -1,4 +1,4 @@
-````
+    ````
 ESP32State/
 ├── library.json             # PlatformIO Package Registry Manifest
 ├── library.properties       # Arduino IDE Package Manifest
@@ -19,8 +19,31 @@ ESP32State/
 │
 │
 └── examples/
-    ├── 01_BasicDefault/      # Standard Post-Mortem Analyse
-    ├── 02_CustomRouting/     # Umleitung auf SD/nullptr
-    ├── 03_ProductionSilent/  # -DESP32STATE_DISABLE_LOGGING Demo
-    └── 04_PowerDownDomains/  # Das refaktorierte Timing/Power-Domain Beispiel
+    ├── 01_BasicStartupAnalysis/                
+    │   └── 01_BasicStartupAnalysis.ino
+    ├── 02_ConditionsInFile/
+    │   ├── StartupConditions.h
+    │   └── 02_ConditionsInFile.ino
+    ├── 03_DynamicConditions/
+    │   └── 03_DynamicConditions.ino
+    ├── 04_CustomLogger/
+    │   └── 04_CustomLogger.ino
+    ├── 05_AnalysisResultEvaluation/
+    │   └── 05_AnalysisResultEvaluation.ino
+    ├── 06_PersistentErrorHandling/
+    │   ├── StartupConditions.h
+    │   └── 06_PersistentErrorHandling.ino
+    ├── 07_DeepSleepRTCTracking/
+    │   ├── RestartConditions.h
+    │   └── 07_DeepSleepRTCTracking.ino
+    ├── 08_EnvironmentConditions/
+    │   ├── EnvironmentConditions.h
+    │   └── 08_EnvironmentConditions.ino
+    ├── 09_SafetyAndSecurity/
+    │   ├── SafetyConditions.h
+    │   └── 09_SafetyAndSecurity.ino
+    ├── 10_ComprehensiveConditions/
+    │   ├── ESP32State_Conditions.h
+    │   └── 10_ComprehensiveConditions.ino
+    └── README.md
 ````
