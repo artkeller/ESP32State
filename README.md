@@ -26,12 +26,20 @@ Anstatt unleserliche `if-else`-Verschachtelungen über Espressif-C-Register zu s
 
 ---
 
-## Praxistipp für saubere Projekte
+---
 
-> **Praxis-Hinweis:** In den Beispiel-Dateien (`.ino`) dieser Bibliothek steht die Initialisierung häufig direkt in der Funktion `setup()`. Das dient **ausschließlich der Didaktik und Lesbarkeit**.
-> Für den raealen Projekteinsatz wird empfohlen, den Initialisieungscode in eine eigene Datei (z. B. `setup_state.h` oder `setup_system.h`) zu isolieren. In der Haupt-`.ino` wird nur noch eine Funktion aufgerufen; die Hauptdatei belibt übersichtlich und leicht wartbar!
+## 🔌 Multi-SoC Unterstützung & Hardware-HAL
+
+`ESP32State` ist von Grund auf agnostisch entworfen und unterstützt **alle 14 ESP32 Silicon-Varianten** nahtlos:
+`ESP32` | `ESP32-S2` | `ESP32-S3` | `ESP32-S31` | `ESP32-C2` | `ESP32-C3` | `ESP32-C5` | `ESP32-C6` | `ESP32-C61` | `ESP32-H2` | `ESP32-H4` | `ESP32-H21` | `ESP32-P4` | `ESP32-E22`
+
+Die integrierte Hardware Abstraction Layer (`variants/ESP32State_HAL.h`) löst abweichende Register-Layouts und Wakeup-Capabilities (EXT0/EXT1, Touch, ULP, RTC-RAM) vollständig zur **Compile-Zeit** auf. Dein Anwendungscode bleibt 100 % agnostisch, ohne dass Du Makro-Weichen im Hauptprogramm schreiben musst.
+
+> 📘 **Hardware-Referenz:** Eine detaillierte Übersicht aller Chip-Spezifikationen, Register-Anforderungen und Deep-Sleep-Eigenschaften findest du im Repository [**ESP32Features**](https://github.com/artkeller/ESP32Features).
 
 ---
+
+
 
 ## Schnellstart (Minimalbeispiel)
 
@@ -123,6 +131,37 @@ void setup() {
 void loop() {
     // Deine eigentliche Anwendungslogik
 }
+
+```
+
+---
+
+
+## Praxistipp für saubere Projekte
+
+> **Praxis-Hinweis:** In den Beispiel-Dateien (`.ino`) dieser Bibliothek steht die Initialisierung häufig direkt in der Funktion `setup()`. Das dient **ausschließlich der Didaktik und Lesbarkeit**.
+> Für den raealen Projekteinsatz wird empfohlen, den Initialisieungscode in eine eigene Datei (z. B. `setup_state.h` oder `setup_system.h`) zu isolieren. In der Haupt-`.ino` wird nur noch eine Funktion aufgerufen; die Hauptdatei belibt übersichtlich und leicht wartbar!
+
+---
+
+## 🛠️ Fortgeschritten: Zielgerichtete HW-Abfragen mit der HAL
+
+Für chipspezifische Notfall-Logiken (z. B. wenn ein Feature wie `EXT0` nur auf bestimmten SoCs wie dem ESP32, S2 oder S3 existiert) stellt die HAL saubere Feature-Flags bereit. Der Compiler eliminiert den Code auf Chips ohne Unterstützung automatisch (**0 Bytes Flash-Overhead**):
+
+```cpp
+#include <ESP32State.h>
+#include <variants/ESP32State_HAL.h>
+
+// 1. Target-Name agnostisch abfragen:
+ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Running on Target: " ESP32State::HAL::getTargetName());
+
+// 2. Hardware-Capabilities sicher zur Compile-Zeit prüfen:
+#if ESP32STATE_HAS_EXT0_WAKEUP
+    {
+        []() { return ESP32State::HAL::getWakeupCause() == ESP_SLEEP_WAKEUP_EXT0; },
+        []() { Serial.println("Aufgewacht via EXT0 Pin!"); }
+    }
+#endif
 
 ```
 
