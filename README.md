@@ -6,7 +6,7 @@ Ein ESP32 im Feld kann aus vielen Gründen neu starten: Stromausfall, Deep-Sleep
 
 ![](assets/social/d5befd26-6023-4565-adab-ef1f0197d0db-2.jpg)
 
-**`ESP32State`** löst genau dieses Aufgabe: Diese Bbliothek ermöglicht, Neustart- und Aufwachursachen (sowie eigene Systembedingungen) strukturiert und übersichtlich zu registrieren, auszuwerten und darauf mit passenden Aktionen zu reagieren. 
+**`ESP32State`** löst genau dieses Aufgabe: Diese Bbliothek ermöglicht, Neustart- und Aufwachursachen (sowie eigene Systembedingungen) strukturiert und übersichtlich zu registrieren, auszuwerten und darauf mit passenden Aktionen zu reagieren. Auf diese weise wird ein ESP32 Projekt deutlich näher an die CRA Vorgaben geführt und unterstützt Factority-basierbar einen stabilen Bestrieb.
 
 ---
 
