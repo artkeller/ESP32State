@@ -1,5 +1,51 @@
 # ESP32State
 
+[![Status](https://img.shields.io/badge/Status-In%20Progress-orange?style=flat-square)](https://github.com/artkeller/ESP32State)
+[![CRA Status](https://img.shields.io/badge/CRA-Exempt%20(pure%20OSS)-informational?style=flat-square)](./CRA-Exemption.md)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](./LICENSE)
+[![Version](https://img.shields.io/badge/Version-2026.08-brightgreen?style=flat-square)](./README.md)
+
+Eine deterministische, **Zero-Heap C++17 Hardware Abstraction Layer (HAL)** und Zustands-Diagnose-Bibliothek für die gesamte ESP32-SoC-Familie. 
+
+`ESP32State` eliminiert unübersichtlichen Makro-Code im Hauptprogramm und bietet eine sichere, seiteneffektfreie Laufzeit-Diagnose von Reset-Gründen, Wakeup-Ursachen und Hardware-Features im Panic-Raum.
+
+---
+
+## 🔌 Multi-SoC Abstraktion
+
+`ESP32State` unterstützt **alle 14 ESP32 Silicon-Varianten** nahtlos und löst modellspezifische Register-Unterschiede zur Compile-Zeit auf:
+
+`ESP32` | `ESP32-S2` | `ESP32-S3` | `ESP32-S31` | `ESP32-C2` | `ESP32-C3` | `ESP32-C5` | `ESP32-C6` | `ESP32-C61` | `ESP32-H2` | `ESP32-H4` | `ESP32-H21` | `ESP32-P4` | `ESP32-E22`
+
+> 📘 **Hardware-Matrix:** Eine detaillierte Übersicht aller Chip-Spezifikationen und Register-Layouts findest du im Referenz-Repository [**ESP32Features**](https://github.com/artkeller/ESP32Features).
+
+---
+
+## 🚀 Minimalistischer 1-Zeiler Hauptsketch (`main.cpp` / `.ino`)
+
+Dank des **Enterprise Governance Patterns** schrumpft die Hauptdatei deines Projekts auf ein Minimum. Die gesamte Initialisierung und Diagnose ist in projektspezifische Header ausgelagert:
+
+```cpp
+#include <Arduino.h>
+#include "project_state_policy.h"
+
+void setup() {
+    Serial.begin(115200);
+    
+    // EIN EINZIGER AUFRUF: Führt die unternehmensweite Zustands-Governance aus
+    ProjectState::evaluateAndBoot();
+    
+    // Normaler Anwendungs-Code startet hier...
+}
+
+void loop() {
+    // Regular application code
+}
+
+----- xxxxx
+
+# ESP32State
+
 [![CRA Status](https://img.shields.io/badge/CRA-Exempt%20(pure%20OSS)-informational)](./CRA-EXEMPTION.md)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](./LICENSE)
 [![Version](https://img.shields.io/badge/Version-2026.08-brightgreen?style=flat-square)](./README.md)
