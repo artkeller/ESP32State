@@ -3,6 +3,7 @@
 [![CRA Status](https://img.shields.io/badge/CRA-Exempt%20(pure%20OSS)-informational)](./CRA-EXEMPTION.md)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](./LICENSE)
 [![Version](https://img.shields.io/badge/Version-2026.08-brightgreen?style=flat-square)](./README.md)
+[![Status](https://img.shields.io/badge/Status-In%20Progress-orange?style=flat-square)](https://github.com/artkeller/ESP32State)
 
 ![](assets/social/d5befd26-6023-4565-adab-ef1f0197d0db-2.jpg)
 
