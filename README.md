@@ -26,30 +26,6 @@ Anstatt unleserliche `if-else`-Verschachtelungen über Espressif-C-Register zu s
 
 ---
 
-# ESP32State
-
-**Diagnoseschicht für ESP32**
-
-Ein ESP32 im Feld kann aus vielen Gründen neu starten: Stromausfall, Deep-Sleep-Timer, Druck auf den Reset-Knopf, Absturz durch Speichermangel (Panic) oder ein ausgelöster Watchdog. Standardmäßig führt der ESP32 nach jedem Neustart einfach wieder `setup()` aus – ohne dass das Anwedungsprogramm direkt weiß, **warum** es überhaupt gestartet wurde, obwohl ein ESP32 dafür grundsätzlich vorbereitet ist. 
-
-![](assets/social/d5befd26-6023-4565-adab-ef1f0197d0db-2.jpg)
-
-**`ESP32State`** löst genau dieses Aufgabe: Diese Bbliothek ermöglicht, Neustart- und Aufwachursachen (sowie eigene Systembedingungen) strukturiert und übersichtlich zu registrieren, auszuwerten und darauf mit passenden Aktionen zu reagieren. Auf diese weise wird ein ESP32 Projekt deutlich näher an die CRA Vorgaben geführt und unterstützt Factority-basierbar einen stabilen Bestrieb.
-
----
-
-## Wazu diese Bibliothek?
-
-Einsatzfall: Messung von Sensordaten im Feld durch einen ESP32:
-
-* Was soll passieren, wenn er ganz normal aus dem **Deep Sleep** aufwacht? *(Daten senden und wieder schlafen)*
-* Was soll passieren, wenn der Strom ausfiel (**Power-On Reset**)? *(Hardware neu initialisieren, Speicher prüfen)*
-* Was soll passieren, wenn das System abgestürzt ist (**Watchdog / Panic Reset**)? *(Fehler im Speicher protokollieren, Notfall-Modus starten)*
-
-Mit `ESP32State` werden diese Fallunterscheidungen in sogenannte **ConditionPairs** (Bedingung + Aktion) verpackt – übersichtlich, erweiterbar und wartbar.
-
----
-
 ## Praxistipp für saubere Projekte
 
 > **Praxis-Hinweis:** In den Beispiel-Dateien (`.ino`) dieser Bibliothek steht die Initialisierung häufig direkt in der Funktion `setup()`. Das dient **ausschließlich der Didaktik und Lesbarkeit**.
