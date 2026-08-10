@@ -16,7 +16,7 @@ Ein ESP32 im Feld startet aus unterschiedlichsten Gründen neu: Kaltstart, Deep-
 
 ## Wozu diese Bibliothek?
 
-Im Feldeinsatz (z. B. Industrial IoT oder autarke Sensorknoten) musst du beim Booten **sofort unmissverständliche Entscheidungen** treffen:
+Im Feldeinsatz (z. B. Industrial IoT oder autarke Sensorknoten) müssen  beim Booten **sofort unmissverständliche Entscheidungen** getroffen werden:
 
 * **Normaler Deep Sleep?** $\rightarrow$ Messwerte senden und sofort wieder schlafen.
 * **Spannungsausfall (Power-On / Brownout)?** $\rightarrow$ Peripherie neu kalibrieren, RTC-RAM prüfen.
