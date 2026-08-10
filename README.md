@@ -27,7 +27,7 @@ Mit `ESP32State` werden diese Fallunterscheidungen in sogenannte **ConditionPair
 
 ---
 
-## ⚡ Schnellstart (Minimalbeispiel)
+## Schnellstart (Minimalbeispiel)
 
 ```cpp
 #include <Arduino.h>
@@ -124,7 +124,7 @@ void loop() {
 
 ## Das Anwendungs-1x1: Welches Beispiel erklärt was?
 
-Für Schritt-für-Schritt-Lernen enthält der Ordner [`examples/`](https://www.google.com/search?q=./examples) 10 fertige Demos:
+Für Schritt-für-Schritt-Lernen enthält der Ordner [`examples/`](examples) 10 fertige Demos:
 
 | Nr. | Thema | Ziel |
 | --- | --- | --- |
