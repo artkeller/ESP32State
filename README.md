@@ -33,7 +33,7 @@ Anstatt unleserliche `if-else`-Verschachtelungen über Espressif-C-Register zu s
 
 Die integrierte Hardware Abstraction Layer (`variants/ESP32State_HAL.h`) löst abweichende Register-Layouts und Wakeup-Capabilities (EXT0/EXT1, Touch, ULP, RTC-RAM) vollständig zur **Compile-Zeit** auf. Dein Anwendungscode bleibt 100 % agnostisch, ohne dass Du Makro-Weichen im Hauptprogramm schreiben musst.
 
-> 📘 **Hardware-Referenz:** Eine detaillierte Übersicht aller Chip-Spezifikationen, Register-Anforderungen und Deep-Sleep-Eigenschaften findest du im Repository [**ESP32Features**](https://github.com/artkeller/ESP32Features).
+> **Hardware-Referenz:** Eine detaillierte Übersicht aller Chip-Spezifikationen, Register-Anforderungen und Deep-Sleep-Eigenschaften findest du im Repository [**ESP32Features**](https://github.com/artkeller/ESP32Features).
 
 ---
 
