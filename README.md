@@ -1,5 +1,9 @@
 # ESP32State
 
+[![CRA Status](https://img.shields.io/badge/CRA-Exempt%20(pure%20OSS)-informational)](./CRA-EXEMPTION.md)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](./LICENSE)
+[![Version](https://img.shields.io/badge/Version-2026.08-brightgreen?style=flat-square)](./README.md)
+
 ![](assets/social/d5befd26-6023-4565-adab-ef1f0197d0db-2.jpg)
 
 **Deterministische Diagnoseschicht & Panic-Raum-Logik für ESP32**
