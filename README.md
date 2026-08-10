@@ -1,5 +1,33 @@
 # ESP32State
 
+![](assets/social/d5befd26-6023-4565-adab-ef1f0197d0db-2.jpg)
+
+**Deterministische Diagnoseschicht & Panic-Raum-Logik für ESP32**
+
+Ein ESP32 im Feld startet aus unterschiedlichsten Gründen neu: Kaltstart, Deep-Sleep-Timer, Brownout, Watchdog-Reset oder Speicherabsturz (Panic). Standardmäßig führt der ESP32 nach jedem Neustart blind `setup()` aus – ohne dass die Anwendung deterministisch weiß, in welchem Sicherheitszustand das System erwacht.
+
+**`ESP32State`** schließt diese Sicherheitslücke: Es bietet eine unbestechliche, seiteneffektfreie Prüfmatrix zum Systemstart. Neustart- und Aufwachursachen sowie kritische Hardware-Bedingungen werden **explizit, transparent und ohne unvorhersehbare Code-Magie** registriert und ausgewertet.
+
+* **CRA-Ready:** Unterstüzt Entwickler bei der Einhaltung von Robustheits- und Sicherheitsanforderungen des EU Cyber Resilience Acts (CRA).
+* **Zero-Magic & Versiegelbar:** Keine verdeckten Kaskadeneffekte, keine versteckten State-Machines. Was du definierst, wird stumpf, sicher und auditierbar abgearbeitet.
+* **Zero-Overhead:** Kompakt, performant und ideal für professionelle embedded Systeme.
+
+---
+
+## Wozu diese Bibliothek?
+
+Im Feldeinsatz (z. B. Industrial IoT oder autarke Sensorknoten) musst du beim Booten **sofort unmissverständliche Entscheidungen** treffen:
+
+* **Normaler Deep Sleep?** $\rightarrow$ Messwerte senden und sofort wieder schlafen.
+* **Spannungsausfall (Power-On / Brownout)?** $\rightarrow$ Peripherie neu kalibrieren, RTC-RAM prüfen.
+* **Kritischer Absturz (Watchdog / Panic)?** $\rightarrow$ In den sicheren Notfall-Modus (*Panic-Raum*) schalten, Fehler im NVS protokollieren und Re-Flash vorbereiten.
+
+Anstatt unleserliche `if-else`-Verschachtelungen über Espressif-C-Register zu schreiben, verpackt `ESP32State` diese Evaluierung in saubere, deklarative **ConditionPairs** (Bedingung + Aktion).
+
+---
+
+# ESP32State
+
 **Diagnoseschicht für ESP32**
 
 Ein ESP32 im Feld kann aus vielen Gründen neu starten: Stromausfall, Deep-Sleep-Timer, Druck auf den Reset-Knopf, Absturz durch Speichermangel (Panic) oder ein ausgelöster Watchdog. Standardmäßig führt der ESP32 nach jedem Neustart einfach wieder `setup()` aus – ohne dass das Anwedungsprogramm direkt weiß, **warum** es überhaupt gestartet wurde, obwohl ein ESP32 dafür grundsätzlich vorbereitet ist. 
