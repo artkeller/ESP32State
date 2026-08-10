@@ -8,7 +8,7 @@ Ein ESP32 im Feld kann aus vielen Gründen neu starten: Stromausfall, Deep-Sleep
 
 ---
 
-## Warum brauche ich diese Bibliothek?
+## Wazu diese Bibliothek?
 
 Einsatzfall: Messung von Sensordaten im Feld durch einen ESP32:
 
