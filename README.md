@@ -22,8 +22,8 @@ Mit `ESP32State` werden diese Fallunterscheidungen in sogenannte **ConditionPair
 
 ## Praxistipp für saubere Projekte
 
-> **Praxis-Hinweis:** In den Beispiel-Dateien (`.ino`) dieser Bibliothek steht die Initialisierung direkt in der Funktion `setup()`. Das dient **ausschließlich der Didaktik und Lesbarkeit**.
-> In echten Projekten gehört dieser Code in eine eigene Datei (z. B. `setup_state.h` oder `setup_system.h`). Rufe in deiner Haupt-`.ino` dann nur noch eine saubere Funktion auf – so bleibt deine Hauptdatei aufgeräumt!
+> **Praxis-Hinweis:** In den Beispiel-Dateien (`.ino`) dieser Bibliothek steht die Initialisierung häufig direkt in der Funktion `setup()`. Das dient **ausschließlich der Didaktik und Lesbarkeit**.
+> Für den raealen Projekteinsatz wird empfohlen, den Initialisieungscode in eine eigene Datei (z. B. `setup_state.h` oder `setup_system.h`) zu isolieren. In der Haupt-`.ino` wird nur noch eine Funktion aufgerufen; die Hauptdatei belibt aufgeräumt!
 
 ---
 
