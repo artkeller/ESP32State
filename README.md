@@ -2,7 +2,7 @@
 
 **Diagnoseschicht für ESP32**
 
-Ein ESP32 im Feld kann aus vielen Gründen neu starten: Stromausfall, Deep-Sleep-Timer, Druck auf den Reset-Knopf, Absturz durch Speichermangel (Panic) oder ein ausgelöster Watchdog. Standardmäßig führt der ESP32 nach jedem Neustart einfach wieder `setup()` aus – ohne dass dein Programm direkt weiß, **warum** es überhaupt gestartet wurde.
+Ein ESP32 im Feld kann aus vielen Gründen neu starten: Stromausfall, Deep-Sleep-Timer, Druck auf den Reset-Knopf, Absturz durch Speichermangel (Panic) oder ein ausgelöster Watchdog. Standardmäßig führt der ESP32 nach jedem Neustart einfach wieder `setup()` aus – ohne dass das Anwedungsprogramm direkt weiß, **warum** es überhaupt gestartet wurde.
 
 **`ESP32State`** löst genau dieses Problem: Es ermöglicht dir, Neustart- und Aufwachursachen (sowie eigene Systembedingungen) sauber zu registrieren, auszuwerten und darauf mit passenden Aktionen zu reagieren.
 
