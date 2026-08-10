@@ -40,7 +40,7 @@ void setup() {
     // 1. Logger konfigurieren (optional, zeigt Details im Seriellen Monitor)
     ESP32State::configure(&Serial, ESP32State::LogLevel::INFO);
 
-    // 2. Bedingungen definieren: WENN (Bedingung erfüllt) THEN (Aktion ausführen)
+    // 2. Bedingungen definieren: WENN (Bedingung erfüllt) DANN (Aktion ausführen)
     ESP32State analyzer({
         {
             []() { return esp_reset_reason() == ESP_RST_POWERON; },
