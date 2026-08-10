@@ -4,7 +4,7 @@
 
 Ein ESP32 im Feld kann aus vielen Gründen neu starten: Stromausfall, Deep-Sleep-Timer, Druck auf den Reset-Knopf, Absturz durch Speichermangel (Panic) oder ein ausgelöster Watchdog. Standardmäßig führt der ESP32 nach jedem Neustart einfach wieder `setup()` aus – ohne dass das Anwedungsprogramm direkt weiß, **warum** es überhaupt gestartet wurde, obwohl ein ESP32 dafür grundsätzlich vorbereitet ist. 
 
-![](res/x.png)
+![](assets/social/d5befd26-6023-4565-adab-ef1f0197d0db-2.jpg)
 
 **`ESP32State`** löst genau dieses Aufgabe: Diese Bbliothek ermöglicht, Neustart- und Aufwachursachen (sowie eigene Systembedingungen) strukturiert und übersichtlich zu registrieren, auszuwerten und darauf mit passenden Aktionen zu reagieren. 
 
