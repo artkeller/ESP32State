@@ -11,7 +11,7 @@
 
 Ein ESP32 im Feld startet aus unterschiedlichsten Gründen neu: Kaltstart, Deep-Sleep-Timer, Brownout, Watchdog-Reset oder Speicherabsturz (Panic). Standardmäßig führt der ESP32 nach jedem Neustart blind `setup()` aus – ohne dass die Anwendung deterministisch weiß, in welchem Sicherheitszustand das System erwacht.
 
-**`ESP32State`** schließt diese Sicherheitslücke: Es bietet eine unbestechliche, seiteneffektfreie Prüfmatrix zum Systemstart. Neustart- und Aufwachursachen sowie kritische Hardware-Bedingungen werden **explizit, transparent und ohne unvorhersehbare Code-Magie** registriert und ausgewertet.
+**`ESP32State`** schließt diese Sicherheitslücke: Es bietet eine seiteneffektfreie Prüfmatrix zum Systemstart. Neustart- und Aufwachursachen sowie kritische Hardware-Bedingungen werden **explizit, transparent und ohne unvorhersehbare Code-Magie** registriert und ausgewertet.
 
 * **CRA-Ready:** Unterstüzt Entwickler bei der Einhaltung von Robustheits- und Sicherheitsanforderungen des EU Cyber Resilience Acts (CRA).
 * **Zero-Magic & Versiegelbar:** Keine verdeckten Kaskadeneffekte, keine versteckten State-Machines. Was du definierst, wird stumpf, sicher und auditierbar abgearbeitet.
