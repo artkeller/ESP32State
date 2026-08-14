@@ -5,6 +5,9 @@
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](./LICENSE)
 [![Version](https://img.shields.io/badge/Version-2026.08-brightgreen?style=flat-square)](./README.md)
 
+![](assets/social/0b101e03-cd96-4452-92c8-ec5f11e65a46-2.png)
+
+
 Eine deterministische, **Zero-Heap C++17 Hardware Abstraction Layer (HAL)** und Zustands-Diagnose-Bibliothek für die gesamte ESP32-SoC-Familie. 
 
 `ESP32State` eliminiert unübersichtlichen Makro-Code im Hauptprogramm und bietet eine sichere, seiteneffektfreie Laufzeit-Diagnose von Reset-Gründen, Wakeup-Ursachen und Hardware-Features im Panic-Raum.
