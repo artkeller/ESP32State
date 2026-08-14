@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](./LICENSE)
 [![Version](https://img.shields.io/badge/Version-2026.08-brightgreen?style=flat-square)](./README.md)
 
-![](assets/social/d5befd26-6023-4565-adab-ef1f0197d0db-2.png)
+![](assets/social/d5befd26-6023-4565-adab-ef1f0197d0db-2.jpg)
 
 
 Eine deterministische, **Zero-Heap C++17 Hardware Abstraction Layer (HAL)** und Zustands-Diagnose-Bibliothek für die gesamte ESP32-SoC-Familie. 
