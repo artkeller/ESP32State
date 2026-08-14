@@ -85,9 +85,9 @@ void loop() {
 
 ---
 
-## So strukturierst du es im Profi-Projekt
+## Strukturierung im Profi-Projekt
 
-Damit deine `main.cpp` oder `.ino` übersichtlich bleibt, lagere die Logik wie folgt aus:
+Damit die  `main.cpp` oder `.ino` übersichtlich bleibt, enfach die Logik wie folgt auslagern:
 
 ### 1. Datei `setup_state.h`
 
