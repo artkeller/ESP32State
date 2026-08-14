@@ -19,7 +19,7 @@ Ein ESP32 im Feld startet aus unterschiedlichsten Gründen neu: Kaltstart, Deep-
 
 ---
 
-## Wozu diese Bibliothek?
+## Motivation für diese Bibliothek?
 
 Im Feldeinsatz (z. B. Industrial IoT oder autarke Sensorknoten) müssen  beim Booten **sofort unmissverständliche Entscheidungen** getroffen werden:
 
