@@ -15,7 +15,7 @@ Ein ESP32 im Feld startet aus unterschiedlichsten Gründen neu: Kaltstart, Deep-
 
 * **CRA-Ready:** Unterstüzt Entwickler bei der Einhaltung von Robustheits- und Sicherheitsanforderungen des EU Cyber Resilience Acts (CRA).
 * **Zero-Magic & Versiegelbar:** Keine verdeckten Kaskadeneffekte, keine versteckten State-Machines. Was definiert wurde, wird sicher und auditierbar abgearbeitet.
-* **Zero-Overhead:** Kompakt, performant und ideal für professionelle embedded Systeme.
+* **Zero-Overhead:** Kompakt, performant und ideal für embedded Systeme.
 
 ---
 
