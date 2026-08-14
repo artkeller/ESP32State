@@ -14,7 +14,7 @@ Ein ESP32 im Feld startet aus unterschiedlichsten Gründen neu: Kaltstart, Deep-
 **`ESP32State`** schließt diese Sicherheitslücke: Es bietet eine seiteneffektfreie Prüfmatrix zum Systemstart. Neustart- und Aufwachursachen sowie kritische Hardware-Bedingungen werden **explizit, transparent und ohne unvorhersehbare Code-Magie** registriert und ausgewertet.
 
 * **CRA-Ready:** Unterstüzt Entwickler bei der Einhaltung von Robustheits- und Sicherheitsanforderungen des EU Cyber Resilience Acts (CRA).
-* **Zero-Magic & Versiegelbar:** Keine verdeckten Kaskadeneffekte, keine versteckten State-Machines. Was du definierst, wird stumpf, sicher und auditierbar abgearbeitet.
+* **Zero-Magic & Versiegelbar:** Keine verdeckten Kaskadeneffekte, keine versteckten State-Machines. Was definiert wurde, wird sicher und auditierbar abgearbeitet.
 * **Zero-Overhead:** Kompakt, performant und ideal für professionelle embedded Systeme.
 
 ---
