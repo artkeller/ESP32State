@@ -36,7 +36,7 @@ Anstatt unleserliche `if-else`-Verschachtelungen über Espressif-C-Register zu s
 `ESP32State` ist agnostisch entworfen und unterstützt **alle 14 ESP32 Silicon-Varianten**:
 `ESP32` | `ESP32-S2` | `ESP32-S3` | `ESP32-S31` | `ESP32-C2` | `ESP32-C3` | `ESP32-C5` | `ESP32-C6` | `ESP32-C61` | `ESP32-H2` | `ESP32-H4` | `ESP32-H21` | `ESP32-P4` | `ESP32-E22`
 
-Die integrierte Hardware Abstraction Layer (`variants/ESP32State_HAL.h`) löst abweichende Register-Layouts und Wakeup-Capabilities (EXT0/EXT1, Touch, ULP, RTC-RAM) vollständig zur **Compile-Zeit** auf. Der Anwendungscode bleibt 100 % agnostisch, ohne dass Makro-Weichen im Hauptprogramm vorhanden sei müssen.
+Die integrierte Hardware Abstraction Layer (`variants/ESP32State_HAL.h`) löst abweichende Register-Layouts und Wakeup-Capabilities (EXT0/EXT1, Touch, ULP, RTC-RAM) vollständig zur **Compile-Zeit** auf. Der Anwendungscode bleibt 100 % agnostisch, ohne dass Makro-Weichen im Hauptprogramm vorhanden sein müssen.
 
 > **Hardware-Referenz:** Eine detaillierte Übersicht aller Chip-Spezifikationen, Register-Anforderungen und Deep-Sleep-Eigenschaften befinden sich im Repository [**ESP32Features**](https://github.com/artkeller/ESP32Features).
 
