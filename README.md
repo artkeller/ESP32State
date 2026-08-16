@@ -153,7 +153,7 @@ void loop() {
 
 ---
 
-## 🛠️ Advanced: targeted HW queries with the HAL
+## Advanced: targeted HW queries with the HAL
 
 For chip-specific emergency logic (e.g. when a feature like `EXT0` only exists on certain SoCs such as the ESP32, S2, or S3), the HAL provides clean feature flags. The compiler automatically eliminates the code on chips without support (**0 bytes of flash overhead**):
 
