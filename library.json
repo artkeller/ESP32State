@@ -17,5 +17,5 @@
   "license": "MIT",
   "frameworks": ["arduino", "espidf"],
   "platforms": ["espressif32"],
-  "headers": ["ESP32State.h", "ESP32StateConfig.h"]
+  "headers": ["ESP32State.h", "ESP32StateConfig.h", "variants/ESP32State_Capabilities.h"]
 }

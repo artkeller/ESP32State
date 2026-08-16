@@ -13,11 +13,15 @@ ESP32State/
 │   ├── README.md                # Source-level documentation
 │   │
 │   ├── conditions/              # Predefined condition sets
-│   │   ├── ESP32State_Defaults.h    # Standard reset & wakeup checks (SOC_* guarded)
+│   │   ├── ESP32State_Defaults.h    # Standard reset & wakeup checks (ESP32STATE_HAS_* guarded)
 │   │   └── ESP32State_PowerDown.h   # Pre-sleep power-down domain auditor
 │   │
 │   └── variants/                # Chip-/framework-specific abstraction
-│       └── ESP32State_HAL.h     # Compile-time HAL for cross-target capability checks
+│       ├── ESP32State_Capabilities.h  # GENERATED capability guards — see harvester/
+│       └── ESP32State_HAL.h           # DEPRECATED shim (HAL is now ESP32State::HAL, a nested struct)
+│
+├── harvester/                   # Fact-harvesting scripts + generator for
+│                                 # ESP32State_Capabilities.h — see harvester/README.md
 │
 └── examples/
     ├── 01_BasicUsage/

@@ -53,7 +53,7 @@ std::vector<ESP32State::ConditionPair> getStartupConditions() {
         },
 
         // Condition 3: Wakeup via EXT0
-#if SOC_PM_SUPPORT_EXT0_WAKEUP
+#if ESP32STATE_HAS_PM_SUPPORT_EXT0_WAKEUP
         {
             []() { return esp_sleep_get_wakeup_cause() == ESP_SLEEP_WAKEUP_EXT0; },
             []() {

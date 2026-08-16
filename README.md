@@ -42,7 +42,7 @@ Instead of writing unreadable `if-else` nesting over Espressif's C registers, `E
 `ESP32State` is designed to be agnostic and supports **all 14 ESP32 silicon variants**:
 `ESP32` | `ESP32-S2` | `ESP32-S3` | `ESP32-S31` | `ESP32-C2` | `ESP32-C3` | `ESP32-C5` | `ESP32-C6` | `ESP32-C61` | `ESP32-H2` | `ESP32-H4` | `ESP32-H21` | `ESP32-P4` | `ESP32-E22`
 
-The built-in Hardware Abstraction Layer (`variants/ESP32State_HAL.h`) resolves differing register layouts and wakeup capabilities (EXT0/EXT1, touch, ULP, RTC RAM) entirely at **compile time**. Application code remains 100% agnostic, with no need for macro branching in the main program.
+The built-in capability layer (`variants/ESP32State_Capabilities.h`) resolves differing register layouts and wakeup capabilities (EXT0/EXT1, touch, ULP, RTC RAM) entirely at **compile time** — generated from real espressif/esp-idf and espressif/arduino-esp32 sources rather than hand-typed (see `harvester/README.md` in the project repository for the full method). Application code remains 100% agnostic, with no need for macro branching in the main program.
 
 > **Hardware reference:** A detailed overview of all chip specifications, register requirements, and deep-sleep characteristics can be found in the [**ESP32Features**](https://github.com/artkeller/ESP32Features) repository.
 
@@ -153,19 +153,20 @@ void loop() {
 
 ---
 
-## Advanced: targeted HW queries with the HAL
+## Advanced: targeted HW queries with the capability layer
 
-For chip-specific emergency logic (e.g. when a feature like `EXT0` only exists on certain SoCs such as the ESP32, S2, or S3), the HAL provides clean feature flags. The compiler automatically eliminates the code on chips without support (**0 bytes of flash overhead**):
+For chip-specific emergency logic (e.g. when a feature like `EXT0` only exists on certain SoCs such as the ESP32, S2, or S3), the generated capability macros provide clean feature flags. The compiler automatically eliminates the code on chips without support (**0 bytes of flash overhead**):
 
 ```cpp
 #include <ESP32State.h>
-#include <variants/ESP32State_HAL.h>
+// variants/ESP32State_Capabilities.h is pulled in automatically by
+// ESP32State.h — no separate include needed.
 
 // 1. Query the target name, agnostically:
 ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Running on Target: " ESP32State::HAL::getTargetName());
 
 // 2. Safely check hardware capabilities at compile time:
-#if ESP32STATE_HAS_EXT0_WAKEUP
+#if ESP32STATE_HAS_PM_SUPPORT_EXT0_WAKEUP
     {
         []() { return ESP32State::HAL::getWakeupCause() == ESP_SLEEP_WAKEUP_EXT0; },
         []() { Serial.println("Woke up via EXT0 pin!"); }

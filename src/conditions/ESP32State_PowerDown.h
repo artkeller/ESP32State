@@ -1,14 +1,18 @@
 /**
  * @file ESP32State_PowerDown.h
  * @brief Pre-Sleep Power-Down Domain Configuration Auditor for ESP32State.
+ *
+ * Known limitation, unchanged from the original file (documented, not
+ * fixed here — out of scope for this pass): the condition lambdas below
+ * call esp_sleep_pd_config(), a real hardware side effect, from inside
+ * what is elsewhere described as a "side-effect-free check matrix."
+ * Flagged in project history; still true.
  */
 
 #ifndef ESP32STATE_POWERDOWN_H
 #define ESP32STATE_POWERDOWN_H
 
 #include "../ESP32State.h"
-#include <esp_sleep.h>
-#include "soc/soc_caps.h"
 
 namespace ESP32StateDefaults {
 
@@ -64,7 +68,9 @@ inline std::vector<ESP32State::ConditionPair> getPowerDownDomainConditions() {
     });
 #endif
 
-#if SOC_PM_SUPPORT_CPU_PD && defined(ESP_PD_DOMAIN_CPU)
+    // Was: "#if SOC_PM_SUPPORT_CPU_PD && defined(ESP_PD_DOMAIN_CPU)" —
+    // now the generated, verified ESP32STATE_HAS_PM_SUPPORT_CPU_PD.
+#if ESP32STATE_HAS_PM_SUPPORT_CPU_PD && defined(ESP_PD_DOMAIN_CPU)
     conditions.push_back({
         []() { return checkPowerDomainError(esp_sleep_pd_config(ESP_PD_DOMAIN_CPU, ESP_PD_OPTION_OFF), "CPU"); },
         []() { ESP32STATE_LOG(ESP32State::LogLevel::ERROR, "Failed to configure 'CPU' domain."); }
@@ -86,7 +92,7 @@ inline std::vector<ESP32State::ConditionPair> getPowerDownDomainConditions() {
  */
 inline ESP32State::AnalysisResult auditPowerDownDomains() {
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Starting PowerDownDomains Audit...");
-    
+
     auto pdConditions = getPowerDownDomainConditions();
     ESP32State auditor(pdConditions, []() {
         ESP32STATE_LOG(ESP32State::LogLevel::INFO, "All PowerDown domain conditions passed successfully.");
