@@ -12,16 +12,16 @@ void setup() {
     delay(1000);
     while (!Serial) {} // CDC-USB Support (ESP32-C3/S3)
 
-    // Log-Level & Ausgabestream konfigurieren
+    // Configure log level & output stream
     ESP32State::configure(&Serial, ESP32State::LogLevel::VERBOSE);
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Firmware started: ESP32State - AdvancedConditions");
 
-    // Instanz mit vordefinierten statischen Bedingungen aus der Header-Datei erstellen
+    // Create an instance with the predefined static conditions from the header file
     ESP32State analyzer(getRestartConditions());
 
     /**
-     * Dynamische Bedingung 1: Deep-Sleep Reset
+     * Dynamic condition 1: Deep-sleep reset
      */
     analyzer.addCondition(
         []() { return esp_reset_reason() == ESP_RST_DEEPSLEEP; },
@@ -29,7 +29,7 @@ void setup() {
     );
 
     /**
-     * Dynamische Bedingung 2: Software Reset (esp_restart)
+     * Dynamic condition 2: Software reset (esp_restart)
      */
     analyzer.addCondition(
         []() { return esp_reset_reason() == ESP_RST_SW; },
@@ -38,7 +38,7 @@ void setup() {
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Starting Analyzer...");
     
-    // Analyse durchführen
+    // Run the analysis
     ESP32State::AnalysisResult result = analyzer.analyze();
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Analyzer Ready! Tested: %zu, Matched: %zu", 
@@ -46,5 +46,5 @@ void setup() {
 }
 
 void loop() {
-    // Einmalige Analyse in setup()
+    // Runs a single analysis inside setup()
 }

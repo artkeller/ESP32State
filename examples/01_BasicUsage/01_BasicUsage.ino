@@ -42,12 +42,12 @@ void setup() {
     delay(1000);
     while (!Serial) {} // CDC-USB Support (C3/S3)
 
-    // Optional: Logging-Instanz auf Serial setzen
+    // Optional: point the logging instance at Serial
     ESP32State::configure(&Serial, ESP32State::LogLevel::VERBOSE);
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Firmware started: ESP32State - BasicUsage");
 
-    // Instanziierung mit Condition-Vector und optionalem "Completion Callback"
+    // Instantiation with a condition vector and an optional "completion callback"
     ESP32State analyzer(
         getMyStateConditions(),
         []() {
@@ -63,5 +63,5 @@ void setup() {
 }
 
 void loop() {
-    // Einmalige Ausführung in setup()
+    // Runs once inside setup()
 }

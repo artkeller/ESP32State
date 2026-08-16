@@ -1,7 +1,7 @@
 {
   "name": "ESP32State",
   "version": "2.0.0",
-  "description": "CRA-compliant, zero-overhead post-mortem state and reset reason analyzer for ESP32.",
+  "description": "Zero-overhead post-mortem state and reset/wakeup reason analyzer for ESP32, supporting robust boot-state handling.",
   "keywords": ["esp32", "reset-reason", "wakeup", "deep-sleep", "cra", "cyber-resilience"],
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
       "maintainer": true
     }
   ],
-  "license": "CC-BY-4.0",
+  "license": "MIT",
   "frameworks": ["arduino", "espidf"],
   "platforms": ["espressif32"],
   "headers": ["ESP32State.h", "ESP32StateConfig.h"]

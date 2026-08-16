@@ -17,7 +17,7 @@ void setup() {
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "=== ESP Reset and Wakeup Cause Analysis with ESP32State ===");
 
-    // Erstelle zwei unabhängige ESP32State-Instanzen
+    // Create two independent ESP32State instances
     ESP32State resetAnalyzer(getResetConditions());
     ESP32State wakeupAnalyzer(getWakeupConditions());
 

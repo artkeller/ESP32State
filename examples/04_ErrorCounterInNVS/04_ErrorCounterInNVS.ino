@@ -10,7 +10,7 @@
 #include <Preferences.h>
 #include <esp_sleep.h>
 
-// Instanz für Non-Volatile Storage (NVS)
+// Instance for Non-Volatile Storage (NVS)
 Preferences preferences;
 
 /**
@@ -56,20 +56,20 @@ std::vector<ESP32State::ConditionPair> getStartupConditions() {
 void setup() {
     Serial.begin(115200);
     delay(1000);
-    while (!Serial) {} // Warten auf CDC-Serial (ESP32-C3/S3)
+    while (!Serial) {} // Wait for CDC serial (ESP32-C3/S3)
 
-    // Logging konfigurieren
+    // Configure logging
     ESP32State::configure(&Serial, ESP32State::LogLevel::VERBOSE);
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Firmware started: ESP32State - ErrorCounterInNVS");
 
-    // NVS Namespace öffnen
+    // Open the NVS namespace
     preferences.begin("errorAnalyzer", false);
 
-    // Instanz mit vorbereiteten Bedingungen erstellen
+    // Create an instance with the prepared conditions
     ESP32State analyzer(getStartupConditions());
 
-    // Dynamische Bedingung: Counter bei Brownout-Event zurücksetzen
+    // Dynamic condition: reset counters on a brownout event
     analyzer.addCondition(
         []() { return esp_reset_reason() == ESP_RST_BROWNOUT; },
         []() {
@@ -81,16 +81,16 @@ void setup() {
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Starting Analyzer...");
     
-    // Analyse durchführen
+    // Run the analysis
     ESP32State::AnalysisResult result = analyzer.analyze();
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Analysis complete. Evaluated: %zu, Matched: %zu", 
                   result.matched + result.unmatched, result.matched);
 
-    // NVS-Verbindung sauber schließen
+    // Close the NVS connection cleanly
     preferences.end();
 }
 
 void loop() {
-    // Einmalige Analyse im setup()
+    // Runs a single analysis inside setup()
 }

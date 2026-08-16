@@ -5,7 +5,7 @@
 
 #include "ESP32State.h"
 
-// Definition der globalen Konfiguration
+// Definition of the global configuration
 namespace ESP32State {
     Config globalConfig;
 }

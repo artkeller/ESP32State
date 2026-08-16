@@ -5,25 +5,25 @@
 
 #include <Arduino.h>
 #include <ESP32State.h>
-#include "RestartConditions.h" // Modulare Conditions aus separater Datei
+#include "RestartConditions.h" // Modular conditions from a separate file
 
 void setup() {
-    // Serielle Schnittstelle initialisieren
+    // Initialize the serial interface
     Serial.begin(115200);
     delay(1000);
-    while (!Serial) {} // Warten auf Serial (wichtig für ESP32-C3/S3 Native USB)
+    while (!Serial) {} // Wait for Serial (important for ESP32-C3/S3 native USB)
 
-    // Optional: Log-Stream auf Serial konfigurieren
+    // Optional: configure the log stream to Serial
     ESP32State::configure(&Serial, ESP32State::LogLevel::VERBOSE);
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Firmware started: ESP32State - Modular Example");
 
-    // Analyzer instanziieren und Bedingungen laden
+    // Instantiate the analyzer and load conditions
     ESP32State analyzer(getRestartConditions());
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Starting Analyzer...");
     
-    // Analyse ausführen
+    // Run the analysis
     ESP32State::AnalysisResult result = analyzer.analyze();
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Analyzer Complete! Tested: %zu, Matched: %zu", 
@@ -31,5 +31,5 @@ void setup() {
 }
 
 void loop() {
-    // Einmalige Analyse in setup()
+    // Runs a single analysis inside setup()
 }

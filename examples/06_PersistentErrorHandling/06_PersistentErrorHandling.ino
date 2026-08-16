@@ -12,21 +12,21 @@ void setup() {
     delay(1000);
     while (!Serial) {} // CDC-USB Support (ESP32-C3/S3)
 
-    // Logging konfigurieren
+    // Configure logging
     ESP32State::configure(&Serial, ESP32State::LogLevel::VERBOSE);
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Firmware started: ESP32State - PersistentErrorHandling");
 
-    // Zähler aus NVS laden
+    // Load counters from NVS
     if (!loadCountersFromNVS()) {
         ESP32STATE_LOG(ESP32State::LogLevel::WARN, "Error loading counters! Initializing all counters to zero.");
         resetAllCounters();
     }
 
-    // Analyzer instanziieren und prädefinierte Bedingungen laden
+    // Instantiate the analyzer and load the predefined conditions
     ESP32State analyzer(getStartupConditions());
 
-    // Dynamische Bedingung: Counter bei Brownout-Event zurücksetzen
+    // Dynamic condition: reset counters on a brownout event
     analyzer.addCondition(
         []() { return esp_reset_reason() == ESP_RST_BROWNOUT; },
         []() {
@@ -37,16 +37,16 @@ void setup() {
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Analyzing reset conditions...");
     
-    // Analyse durchführen
+    // Run the analysis
     ESP32State::AnalysisResult result = analyzer.analyze();
 
-    // Fallback-Logik: Falls keine spezifische Bedingung getriggert wurde
+    // Fallback logic: in case no specific condition was triggered
     if (result.matched == 0) {
         incrementUnknownResetCounter();
         ESP32STATE_LOG(ESP32State::LogLevel::WARN, "Unknown reset reason! Counter: %u", unknownResetCounter);
     }
 
-    // Aktualisierte Zählerwerte in NVS speichern
+    // Persist the updated counter values to NVS
     if (!saveCountersToNVS()) {
         ESP32STATE_LOG(ESP32State::LogLevel::ERROR, "Error saving counters to NVS!");
     }
@@ -55,5 +55,5 @@ void setup() {
 }
 
 void loop() {
-    // Einmalige Analyse im setup()
+    // Runs a single analysis inside setup()
 }

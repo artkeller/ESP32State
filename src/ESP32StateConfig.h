@@ -8,7 +8,7 @@
 
 #include <Arduino.h>
 
-// Compile-Time Flag: Löscht bei -DESP32STATE_DISABLE_LOGGING sämtlichen Log-Code
+// Compile-time flag: strips all logging code when built with -DESP32STATE_DISABLE_LOGGING
 #if defined(ESP32STATE_DISABLE_LOGGING)
     #define ESP32STATE_LOG(level, format, ...) ((void)0)
 #else
@@ -18,25 +18,25 @@
 namespace ESP32State {
 
 enum class LogLevel {
-    NONE = 0,   ///< Keinerlei Ausgaben
-    ERROR = 1,  ///< Nur Fehler (Panic, Brownout etc.)
-    INFO = 2,   ///< Normale Diagnosedaten
-    VERBOSE = 3 ///< Ausführliches Logging
+    NONE = 0,   ///< No output at all
+    ERROR = 1,  ///< Errors only (panic, brownout, etc.)
+    INFO = 2,   ///< Normal diagnostic data
+    VERBOSE = 3 ///< Verbose logging
 };
 
 struct Config {
-    Print* outputStream = &Serial;      ///< Ziel-Stream (&Serial, &Serial1, &File oder nullptr)
-    LogLevel logLevel = LogLevel::INFO; ///< Standard Loglevel
-    bool enablePrefix = true;           ///< Prefix "[ESP32State]" aktivieren
+    Print* outputStream = &Serial;      ///< Target stream (&Serial, &Serial1, &File, or nullptr)
+    LogLevel logLevel = LogLevel::INFO; ///< Default log level
+    bool enablePrefix = true;           ///< Enable the "[ESP32State]" prefix
 };
 
-// Globale Bibliotheks-Konfiguration
+// Global library configuration
 extern Config globalConfig;
 
 /**
- * @brief Konfiguriert das Output-Routing zur Laufzeit.
- * @param stream Zeiger auf Print-Objekt oder nullptr für Stummschaltung.
- * @param level Gewünschtes Log-Level.
+ * @brief Configures output routing at runtime.
+ * @param stream Pointer to a Print object, or nullptr to mute output.
+ * @param level Desired log level.
  */
 inline void configure(Print* stream, LogLevel level = LogLevel::INFO) {
     globalConfig.outputStream = stream;
@@ -44,11 +44,11 @@ inline void configure(Print* stream, LogLevel level = LogLevel::INFO) {
 }
 
 /**
- * @brief Interne Print-Hilfsfunktion mit nullptr-Check und Level-Filtering.
+ * @brief Internal print helper with nullptr check and level filtering.
  */
 inline void log(LogLevel level, const char* format, ...) {
     if (globalConfig.outputStream == nullptr || level > globalConfig.logLevel) {
-        return; // nullptr oder Level unterschritten -> Abbruch vor Formatting
+        return; // nullptr or below the configured level -> abort before formatting
     }
 
     if (globalConfig.enablePrefix) {

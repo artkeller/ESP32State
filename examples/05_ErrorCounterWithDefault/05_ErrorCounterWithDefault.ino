@@ -32,7 +32,7 @@ void saveErrorCounters() {
 
 std::vector<ESP32State::ConditionPair> getStartupConditions() {
     return {
-        // Condition 1: Panic Reset
+        // Condition 1: Panic reset
         {
             []() { return esp_reset_reason() == ESP_RST_PANIC; },
             []() {
@@ -42,7 +42,7 @@ std::vector<ESP32State::ConditionPair> getStartupConditions() {
             }
         },
 
-        // Condition 2: Power-On Reset
+        // Condition 2: Power-on reset
         {
             []() { return esp_reset_reason() == ESP_RST_POWERON; },
             []() {
@@ -75,10 +75,10 @@ void setup() {
 
     loadErrorCounters();
 
-    // Instanz mit Bedingungen und Fallback/Completion Handler
+    // Create an instance with conditions and a fallback/completion handler
     ESP32State analyzer(getStartupConditions());
 
-    // Dynamische Bedingung: Brownout setzt alle Zähler zurück
+    // Dynamic condition: brownout resets all counters
     analyzer.addCondition(
         []() { return esp_reset_reason() == ESP_RST_BROWNOUT; },
         []() {
@@ -92,10 +92,10 @@ void setup() {
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Starting Analyzer...");
     
-    // Analyse durchführen
+    // Run the analysis
     ESP32State::AnalysisResult result = analyzer.analyze();
 
-    // Fallback-Logik: Falls keine spezifische Bedingung getriggert wurde
+    // Fallback logic: in case no specific condition was triggered
     if (result.matched == 0) {
         unknownResetCounter++;
         ESP32STATE_LOG(ESP32State::LogLevel::WARN, "Unclassified or unknown reset condition! Counter: %d", unknownResetCounter);
@@ -107,5 +107,5 @@ void setup() {
 }
 
 void loop() {
-    // Einmalige Ausführung im setup()
+    // Runs once inside setup()
 }

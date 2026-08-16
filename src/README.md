@@ -20,7 +20,7 @@
 ```cpp
 #include <Arduino.h>
 #include <ESP32State.h>
-#include <ESP32State_Conditions.h>
+#include <conditions/ESP32State_Defaults.h>
 
 void setup() {
     Serial.begin(115200);
@@ -33,3 +33,4 @@ void setup() {
 }
 
 void loop() {}
+```

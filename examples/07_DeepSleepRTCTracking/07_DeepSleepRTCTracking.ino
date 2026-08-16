@@ -7,7 +7,7 @@
 #include <ESP32State.h>
 #include "RestartConditions.h"
 
-// Schlummerdauer: 10 Sekunden in Mikrosekunden
+// Sleep duration: 10 seconds in microseconds
 constexpr uint64_t SLEEP_DURATION_US = 10ULL * 1000000ULL;
 
 void setup() {
@@ -15,12 +15,12 @@ void setup() {
     delay(1000);
     while (!Serial) {} // CDC-USB Support (ESP32-C3/S3)
 
-    // Logging-Konfiguration
+    // Logging configuration
     ESP32State::configure(&Serial, ESP32State::LogLevel::VERBOSE);
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Firmware started: ESP32State - DeepSleepRTCTracking");
 
-    // Instanziierung des Analyzers mit Bedingungen aus RestartConditions.h
+    // Instantiate the analyzer with the conditions from RestartConditions.h
     ESP32State analyzer(getStartupConditions());
 
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Start Analyzer...");
@@ -29,7 +29,7 @@ void setup() {
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Analyzer Complete! Evaluated: %zu, Matched: %zu", 
                   result.total_evaluated, result.matched);
 
-    // Ablaufsteuerung basierend auf dem RTC-Wakeup-Counter
+    // Flow control based on the RTC wakeup counter
     if (wakeupCounter == 0) {
         ESP32STATE_LOG(ESP32State::LogLevel::WARN, "-> Threshold reached or first boot. Performing software restart (esp_restart)...");
         delay(1000);
@@ -42,5 +42,5 @@ void setup() {
 }
 
 void loop() {
-    // Wird im Deep-Sleep nie erreicht
+    // Never reached during deep sleep
 }

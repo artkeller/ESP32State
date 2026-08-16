@@ -13,18 +13,18 @@
 namespace ESP32StateDefaults {
 
 /**
- * @brief Hilfsfunktion zur Fehlerprüfung einzelner Power-Domains.
+ * @brief Helper function to check a single power domain for errors.
  */
 inline bool checkPowerDomainError(esp_err_t err, const char* domainName) {
     if (err != ESP_OK) {
         ESP32STATE_LOG(ESP32State::LogLevel::ERROR, "PD Config failed for %s (0x%X)", domainName, err);
-        return true; // Return true = Fehler liegt vor
+        return true; // Return true = an error occurred
     }
     return false;
 }
 
 /**
- * @brief Liefert alle Power-Down-Domain-Bedingungen für Deep-Sleep.
+ * @brief Returns all power-down domain conditions for deep sleep.
  */
 inline std::vector<ESP32State::ConditionPair> getPowerDownDomainConditions() {
     std::vector<ESP32State::ConditionPair> conditions;
@@ -82,7 +82,7 @@ inline std::vector<ESP32State::ConditionPair> getPowerDownDomainConditions() {
 }
 
 /**
- * @brief Führt den Power-Down-Domain-Test direkt über die ESP32State Engine aus.
+ * @brief Runs the power-down domain check directly via the ESP32State engine.
  */
 inline ESP32State::AnalysisResult auditPowerDownDomains() {
     ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Starting PowerDownDomains Audit...");

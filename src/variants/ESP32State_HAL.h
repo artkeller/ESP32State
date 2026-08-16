@@ -4,7 +4,7 @@
 #include <sdkconfig.h>
 #include <esp_system.h>
 #include <esp_sleep.h>
-#include <soc/soc_caps.h> // Target Capabilities von Espressif
+#include <soc/soc_caps.h> // Target capabilities from Espressif
 
 /**
  * @file ESP32State_HAL.h

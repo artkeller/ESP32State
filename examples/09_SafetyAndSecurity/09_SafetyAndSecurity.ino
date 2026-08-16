@@ -22,7 +22,7 @@ void setup() {
 
     if (result.matched > 0) {
         ESP32STATE_LOG(ESP32State::LogLevel::ERROR, "System previously crashed due to a safety violation!");
-        // Hier könnte ein Safe-Mode oder Notfall-Recovery eingeleitet werden
+        // A safe mode or emergency recovery could be triggered here
     } else {
         ESP32STATE_LOG(ESP32State::LogLevel::INFO, "System booted cleanly without safety violations.");
     }

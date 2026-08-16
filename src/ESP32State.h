@@ -10,7 +10,7 @@
 
 #include <functional>
 #include <vector>
-#include "ESP32StateConfig.h"        #  Configurable output stream routing and logging for ESP32State
+#include "ESP32StateConfig.h"        // Configurable output stream routing and logging for ESP32State
 
 class ESP32State {
 public:
@@ -18,27 +18,27 @@ public:
     using Callback = std::function<void()>;
 
     struct ConditionPair {
-        Condition condition; ///< Evaluierende Bedingung
-        Callback callback;   ///< Auszuführender Callback bei Match
+        Condition condition; ///< Condition to evaluate
+        Callback callback;   ///< Callback to run on match
     };
 
     struct AnalysisResult {
-        size_t matched;   ///< Anzahl erfüllter Bedingungen
-        size_t unmatched; ///< Anzahl nicht erfüllter Bedingungen
+        size_t matched;   ///< Number of conditions matched
+        size_t unmatched; ///< Number of conditions not matched
     };
 
     /**
-     * @brief Konstruktor mit optionaler Liste von Bedingungen und Default-Callback.
+     * @brief Constructor with an optional list of conditions and a default callback.
      */
     ESP32State(const std::vector<ConditionPair>& conditions = {}, Callback defaultCallback = nullptr);
 
     /**
-     * @brief Wertet alle Bedingungen aus und führt gematchte Callbacks aus.
+     * @brief Evaluates all conditions and runs matched callbacks.
      */
     AnalysisResult analyze();
 
     /**
-     * @brief Fügt dynamisch eine Bedingung mit Callback hinzu.
+     * @brief Dynamically adds a condition with its callback.
      */
     void addCondition(const Condition& condition, const Callback& callback);
 

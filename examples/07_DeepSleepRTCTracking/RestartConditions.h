@@ -12,7 +12,7 @@
 #include <esp_sleep.h>
 #include <vector>
 
-// Im RTC-SRAM gespeicherte Variable übersteht Deep Sleep
+// Variable stored in RTC SRAM survives deep sleep
 RTC_DATA_ATTR inline int wakeupCounter = 0;
 inline constexpr uint32_t MAX_WAKEUP_COUNT = 3;
 
@@ -58,7 +58,7 @@ inline std::vector<ESP32State::ConditionPair> getStartupConditions() {
                 wakeupCounter++;
                 ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Wakeup by timer detected. Current RTC Wakeup Counter: %d", wakeupCounter); 
                 if (wakeupCounter >= MAX_WAKEUP_COUNT) {
-                    wakeupCounter = 0; // Zurücksetzen nach Maximum
+                    wakeupCounter = 0; // Reset after reaching the maximum
                     ESP32STATE_LOG(ESP32State::LogLevel::WARN, "Maximum number of wakeups reached (%u). Resetting counter.", MAX_WAKEUP_COUNT);
                 }
             }

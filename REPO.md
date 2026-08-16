@@ -1,35 +1,37 @@
 ```text
 ESP32State/
-├── library.json             # PlatformIO Package Registry Manifest
-├── library.properties       # Arduino IDE Package Manifest
-├── README.md                # Dokumentation & CRA-Hinweise
-├── LICENSE                  # CC0-1.0 / MIT
+├── library.json             # PlatformIO package registry manifest
+├── library.properties       # Arduino IDE package manifest
+├── README.md                # Documentation & CRA notes
+├── CRA-EXEMPTION.md         # CRA applicability statement for downstream users
+├── LICENSE                  # MIT
 │
 ├── src/
-│   ├── ESP32State.h         # Core Engine (Interface)
-│   ├── ESP32State.cpp       # Core Engine (Implementation & Global Config)
-│   ├── ESP32StateConfig.h   # Stream-Routing, CRA Truncation & LogLevel
+│   ├── ESP32State.h             # Core engine (interface)
+│   ├── ESP32State.cpp           # Core engine (implementation & global config)
+│   ├── ESP32StateConfig.h       # Stream routing & LogLevel
+│   ├── README.md                # Source-level documentation
 │   │
-│   ├── conditions/          # Vordefinierte Condition-Sets
-│   │   ├── Default.h        # Standard Reset- & Wakeup-Checks (SOC_* geguardet)
-│   │   └── Power.h          # Spezial-Checks (z. B. VDD-Glitch, Voltage-Drop)
+│   ├── conditions/              # Predefined condition sets
+│   │   ├── ESP32State_Defaults.h    # Standard reset & wakeup checks (SOC_* guarded)
+│   │   └── ESP32State_PowerDown.h   # Pre-sleep power-down domain auditor
 │   │
-│   └── variants/            # Chip- / Framework-Spezifika (falls nötig)
-│       └── ESP32State_HAL.h # Abstraktion für seltene IDF/Arduino-Abweichungen
-│
+│   └── variants/                # Chip-/framework-specific abstraction
+│       └── ESP32State_HAL.h     # Compile-time HAL for cross-target capability checks
 │
 └── examples/
-    ├── 01_BasicStartupAnalysis/                
-    │   └── 01_BasicStartupAnalysis.ino
-    ├── 02_ConditionsInFile/
-    │   ├── StartupConditions.h
-    │   └── 02_ConditionsInFile.ino
-    ├── 03_DynamicConditions/
-    │   └── 03_DynamicConditions.ino
-    ├── 04_CustomLogger/
-    │   └── 04_CustomLogger.ino
-    ├── 05_AnalysisResultEvaluation/
-    │   └── 05_AnalysisResultEvaluation.ino
+    ├── 01_BasicUsage/
+    │   └── 01_BasicUsage.ino
+    ├── 02_ModularExample/
+    │   ├── RestartConditions.h
+    │   └── 02_ModularExample.ino
+    ├── 03_AdvancedConditions/
+    │   ├── RestartConditions.h
+    │   └── 03_AdvancedConditions.ino
+    ├── 04_ErrorCounterInNVS/
+    │   └── 04_ErrorCounterInNVS.ino
+    ├── 05_ErrorCounterWithDefault/
+    │   └── 05_ErrorCounterWithDefault.ino
     ├── 06_PersistentErrorHandling/
     │   ├── StartupConditions.h
     │   └── 06_PersistentErrorHandling.ino

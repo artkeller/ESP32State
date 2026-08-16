@@ -12,7 +12,7 @@
 #include <esp_system.h>
 #include <vector>
 
-// Inline-Deklaration verhindert Linker-Fehler bei mehreren Translation Units
+// Inline declaration prevents linker errors across multiple translation units
 inline uint32_t panicResetCounter = 0;
 inline uint32_t powerOnResetCounter = 0;
 inline uint32_t unknownResetCounter = 0;

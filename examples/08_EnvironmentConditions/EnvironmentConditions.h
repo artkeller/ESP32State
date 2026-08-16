@@ -12,10 +12,10 @@
 #include <driver/adc.h>
 #include <vector>
 
-// Simulierte/Ausgelesene Umgebungsparameter
+// Simulated/sampled environmental parameters
 inline float getInternalTemperature() {
 #if defined(CONFIG_IDF_TARGET_ESP32) || defined(CONFIG_IDF_TARGET_ESP32S2) || defined(CONFIG_IDF_TARGET_ESP32S3) || defined(CONFIG_IDF_TARGET_ESP32C3)
-    // ESP32 interne Temperaturmessung (Beispielhafter Demo-Wert)
+    // ESP32 internal temperature reading (example demo value)
     return 42.5f; 
 #else
     return 25.0f;
@@ -23,7 +23,7 @@ inline float getInternalTemperature() {
 }
 
 inline float getSupplyVoltage() {
-    // Simulierte VDD-Messung in Volt
+    // Simulated VDD reading in volts
     return 3.15f; 
 }
 

@@ -13,7 +13,7 @@
 
 /**
  * @brief Retrieves a vector of restart conditions and their corresponding callback functions.
- * @note Das 'inline' Keyword verhindert Linker-Konflikte beim mehrfachen Einbinden!
+ * @note The 'inline' keyword prevents linker conflicts when this header is included multiple times!
  */
 inline std::vector<ESP32State::ConditionPair> getRestartConditions() {
     return {

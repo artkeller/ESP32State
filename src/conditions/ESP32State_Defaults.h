@@ -1,6 +1,6 @@
 /**
  * @file ESP32State_Defaults.h
- * @brief Standard Reset- & Wakeup-Checks (SOC_* geguardet)
+ * @brief Standard reset & wakeup checks (SOC_* guarded)
  */
 
 #ifndef ESP32STATE_CONDITIONS_H
@@ -16,7 +16,7 @@ namespace ESP32StateDefaults {
 inline std::vector<ESP32State::ConditionPair> getResetConditions() {
     std::vector<ESP32State::ConditionPair> conditions;
 
-    // Universelle Reset-Gründe
+    // Universal reset reasons
     conditions.push_back({
         []() { return esp_reset_reason() == ESP_RST_POWERON; },
         []() { ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Power-on reset."); }
@@ -37,7 +37,7 @@ inline std::vector<ESP32State::ConditionPair> getResetConditions() {
         []() { ESP32STATE_LOG(ESP32State::LogLevel::INFO, "Deep sleep wake reset."); }
     });
 
-    // Hardware-Geguardet (Wird bei Modellen ohne entsprechendes Feature nicht kompiliert)
+    // Hardware-guarded (not compiled on models without the corresponding feature)
 #if defined(ESP_RST_USB)
     conditions.push_back({
         []() { return esp_reset_reason() == ESP_RST_USB; },
